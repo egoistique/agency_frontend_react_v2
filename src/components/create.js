@@ -10,7 +10,6 @@ export default function Create() {
         axios.post('http://localhost:8080/client/', {
             name,
             contact,
-            //checkbox
         })
     }
     return (

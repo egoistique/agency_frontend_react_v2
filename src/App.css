@@ -1,6 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-.main{
+/* Добавленный стиль для кнопки */
+.button-style {
+  background-color: #FF5722;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Ваши существующие стили */
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,11 +22,84 @@
   color: whitesmoke;
   flex-direction: column;
 }
-.main-header{
+
+.main-header {
   font-family: 'Montserrat', sans-serif;
+  
 }
-.create-form label{
+
+.create-form label {
   color: whitesmoke !important;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px !important;
 }
+/* Стили для контейнера списка карточек */
+.read-container {
+  padding-top: 60px; /* Высота шапки */
+  overflow-y: scroll; /* Разрешить прокрутку внутри контейнера */
+}
+
+/* Стили для шапки */
+.read-container h2 {
+  position: fixed; /* Зафиксировать шапку */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FFF; /* Цвет фона шапки */
+  padding: 20px;
+  z-index: 1; /* Чтобы шапка была над остальными элементами */
+}
+
+/* Стили для контейнера списка карточек */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 60px; /* Учесть высоту шапки */
+  justify-content: center; /* Центрирование карточек по горизонтали */
+}
+
+/* Обновленные стили для карточек */
+.card-container .card {
+  width: calc(2/3 * 100% - 20px); /* 2/3 ширины экрана с учетом промежутков между карточками */
+  margin-bottom: 20px;
+  background-color: #FFF; /* Цвет фона карточки */
+  color: #212121; /* Цвет текста на карточке */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирование текста */
+  padding: 10px;
+  text-align: center; /* Выравнивание текста по центру */
+  border-radius: 15px; /* Скругление углов */
+  height: 125px; /* Фиксированная высота */
+  overflow: hidden; /* Скрыть возможный избыток содержимого */
+}
+
+
+.card-container .card .card-buttons {
+  display: flex;
+  justify-content: space-between; /* Равномерное распределение пространства между кнопками */
+  margin-top: 15px;
+}
+
+.card-container .card .card-buttons button {
+  background-color: #FF5722; /* Цвет фона кнопок Update и Delete */
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  border: none; /* Убрать обводку */
+  outline: none; /* Убрать выделение при фокусе */
+}
+
+.card-container .card .card-buttons button:first-child {
+  margin-right: 15px; /* Отступ между кнопками */
+}
+
+
+
+
+
