@@ -23,9 +23,62 @@
   flex-direction: column;
 }
 
+
+/* Стили для шапки */
 .main-header {
   font-family: 'Montserrat', sans-serif;
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  background-color: whitesmoke; /* Цвет фона шапки */
+}
+
+/* Стили для навигационных ссылок */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+}
+
+.nav-items a {
+  margin-right: 20px;
+  margin-top: 10px;
+  text-decoration: none;
+  color: whitesmoke; /* Цвет ссылок */
+}
+
+.new-button {
+  background-color: #FF5722;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+}
+
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+/* Стили для кнопки "New" */
+.new-button {
+  background-color: #FF5722;
+  color: white;
+  text-decoration: none;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
 }
 
 .create-form label {
@@ -54,8 +107,8 @@
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  padding-top: 60px; /* Учесть высоту шапки */
+  gap: 10px;
+  padding-top: 5px; /* Учесть высоту шапки */
   justify-content: center; /* Центрирование карточек по горизонтали */
 }
 

@@ -1,20 +1,22 @@
 import './App.css';
-import Create from './components/create';
-import Read from './components/read';
+import CreateClient from './components/createclient';
+import ReadClients from './components/readclients';
+import ReadAgents from './components/readagents';
+import ReadReports from './components/readreports';
 import Update from './components/update';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Nav from './components/Nav'; // Импортируем компонент Nav
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
       <div className="main">
-        <h2 className="main-header">Real Estate Agency</h2>
-        <div>
-          <Link to='/read' className="button-style">Clients</Link>
-        </div>
+        <Nav />
         <Routes>
-          <Route exact path='/create' element={<Create />} />
-          <Route exact path='/read' element={<Read />} />
+          <Route exact path='/createclient' element={<CreateClient />} />
+          <Route exact path='/readclients' element={<ReadClients />} />
+          <Route exact path='/readagents' element={<ReadAgents />} />
+          <Route exact path='/readreports' element={<ReadReports />} />
           <Route path='/update' element={<Update />} />
         </Routes>
       </div>
@@ -23,4 +25,3 @@ function App() {
 }
 
 export default App;
-

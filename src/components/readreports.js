@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-export default function Read() {
+export default function ReadReports() {
     const [APIData, setAPIData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/client/')
+        axios.get('http://localhost:8080/report/')
             .then((response) => {
                 setAPIData(response.data);
             })
@@ -15,12 +15,12 @@ export default function Read() {
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
-        localStorage.setItem(' Name', data.name);
-        localStorage.setItem('Contact', data.contact);
+        localStorage.setItem(' Text', data.text);
+        localStorage.setItem('Agent_id', data.agent_id);
     }
 
     const onDelete = (id) => {
-        axios.delete(`http://localhost:8080/client/${id}`)
+        axios.delete(`http://localhost:8080/report/${id}`)
         .then(() => {
             const updatedData = APIData.filter(item => item.id !== id);
             setAPIData(updatedData);
@@ -29,20 +29,20 @@ export default function Read() {
 
     return (
         <div className="read-container">
-            <h2>Clients</h2>
+            <h2>Reports</h2>
             <div className="card-container">
                 {APIData.map((data) => (
                     <div key={data.id} className="card"> {/* Добавление класса card здесь */}
                         <Card>
                             <Card.Content>
-                                <Card.Header>{data.name}</Card.Header>
-                                <Card.Meta>{data.contact}</Card.Meta>
+                                <Card.Header>{data.text}</Card.Header>
+                                <Card.Meta>{data.agent_id}</Card.Meta>
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='card-buttons'>
-                                    <Link to='/update'>
+                                    {/* <Link to='/update'>
                                         <Button onClick={() => setData(data)}>Update</Button>
-                                    </Link>
+                                    </Link> */}
                                     <Button onClick={() => onDelete(data.id)}>Delete</Button>
                                 </div>
                             </Card.Content>
