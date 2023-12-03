@@ -81,11 +81,14 @@
   font-size: 16px;
 }
 
+
 .create-form label {
   color: whitesmoke !important;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px !important;
 }
+
+
 /* Стили для контейнера списка карточек */
 .read-container {
   padding-top: 60px; /* Высота шапки */

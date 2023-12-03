@@ -3,7 +3,7 @@ import { Button, Form } from 'semantic-ui-react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function Update() {
+export default function UpdateAgent() {
     const navigate = useNavigate();
     const [id, setID] = useState(null);
     const [name, setName] = useState('');
@@ -16,12 +16,12 @@ export default function Update() {
     }, []);
 
     const updateAPIData = () => {
-        axios.put(`http://localhost:8080/client/${id}`, {
+        axios.put(`http://localhost:8080/agent/${id}`, {
             name: name,
             contact: contact,
             
         }).then(() => {
-            navigate('/read'); // использование navigate для перехода на другую страницу
+            navigate('/readagents'); // использование navigate для перехода на другую страницу
         }).catch(error => {
             console.error('Ошибка при обновлении данных:', error);
         });

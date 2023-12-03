@@ -39,7 +39,7 @@ export default function ReadClients() {
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='card-buttons'>
-                                    <Link to='/update'>
+                                    <Link to='/updateclient'>
                                         <Button onClick={() => setData(data)}>Update</Button>
                                     </Link>
                                     <Button onClick={() => onDelete(data.id)}>Delete</Button>

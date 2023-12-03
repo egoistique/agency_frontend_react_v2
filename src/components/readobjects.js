@@ -15,7 +15,7 @@ export default function ReadObjects() {
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
-        localStorage.setItem(' location', data.location);
+        localStorage.setItem('location', data.location);
         localStorage.setItem('price', data.price);
     }
 
@@ -38,12 +38,12 @@ export default function ReadObjects() {
                                 <Card.Meta>{data.price}</Card.Meta>
                             </Card.Content>
                             <Card.Content extra>
-                                <div className='card-buttons'>
-                                    <Link to='/update'>
-                                        <Button onClick={() => setData(data)}>Update</Button>
-                                    </Link>
-                                    <Button onClick={() => onDelete(data.id)}>Delete</Button>
-                                </div>
+                            <div className='card-buttons'>
+                                <Link to='/updateobject'>
+                                    <Button onClick={() => setData(data)}>Update</Button>
+                                </Link>
+                                <Button onClick={() => onDelete(data.id)}>Delete</Button>
+                            </div>
                             </Card.Content>
                         </Card>
                     </div>
