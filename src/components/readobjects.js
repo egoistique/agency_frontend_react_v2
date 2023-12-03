@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-export default function ReadReports() {
+export default function ReadObjects() {
     const [APIData, setAPIData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/report/')
+        axios.get('http://localhost:8080/estate-object/')
             .then((response) => {
                 setAPIData(response.data);
             })
@@ -15,12 +15,12 @@ export default function ReadReports() {
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
-        localStorage.setItem(' Text', data.text);
-        localStorage.setItem('Agent_id', data.agent_id);
+        localStorage.setItem(' location', data.location);
+        localStorage.setItem('price', data.price);
     }
 
     const onDelete = (id) => {
-        axios.delete(`http://localhost:8080/report/${id}`)
+        axios.delete(`http://localhost:8080/estate-object/${id}`)
         .then(() => {
             const updatedData = APIData.filter(item => item.id !== id);
             setAPIData(updatedData);
@@ -28,18 +28,14 @@ export default function ReadReports() {
     }
 
     return (
-        <div className="read-container">
-            
+        <div className="read-container">            
             <div className="card-container">
                 {APIData.map((data) => (
                     <div key={data.id} className="card"> {/* Добавление класса card здесь */}
                         <Card>
                             <Card.Content>
-                                <Card.Header>{data.text}</Card.Header>
-                                <Card.Meta>
-                                    {`Agent: ${data.agent_id ? data.agent_id.name : 'N/A'}`}<br />
-                                    {`Contact: ${data.agent_id ? data.agent_id.contact : 'N/A'}`}
-                                </Card.Meta>
+                                <Card.Header>{data.location}</Card.Header>
+                                <Card.Meta>{data.price}</Card.Meta>
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='card-buttons'>
