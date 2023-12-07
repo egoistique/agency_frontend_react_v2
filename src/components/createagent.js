@@ -3,17 +3,17 @@ import axios from 'axios';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateClient() {
+export default function CreateAgent() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [contact, setContact] = useState('');
     const [checkbox, setCheckbox] = useState(false);
     const postData = () => {
-        axios.post('http://localhost:8081/client/', {
+        axios.post('http://localhost:8081/agent/', {
             name,
             contact,
         }).then(() =>{
-            navigate('/readclients'); 
+            navigate('/readagents'); 
         })
     }
     return (
@@ -26,9 +26,6 @@ export default function CreateClient() {
                 <Form.Field>
                     <label>Contact</label>
                     <input placeholder='Contact' onChange={(e) => setContact(e.target.value)}/>
-                </Form.Field>
-                <Form.Field>
-                    <Checkbox label='I agree to the Terms and Conditions' onChange={(e) => setCheckbox(!checkbox)}/>
                 </Form.Field>
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>

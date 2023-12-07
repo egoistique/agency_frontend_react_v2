@@ -7,7 +7,7 @@ export default function ReadObjects() {
     const [APIData, setAPIData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/estate-object/')
+        axios.get('http://localhost:8081/estate-object/')
             .then((response) => {
                 setAPIData(response.data);
             })
@@ -20,7 +20,7 @@ export default function ReadObjects() {
     }
 
     const onDelete = (id) => {
-        axios.delete(`http://localhost:8080/estate-object/${id}`)
+        axios.delete(`http://localhost:8081/estate-object/${id}`)
         .then(() => {
             const updatedData = APIData.filter(item => item.id !== id);
             setAPIData(updatedData);

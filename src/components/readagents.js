@@ -7,7 +7,7 @@ export default function ReadAgents() {
     const [APIData, setAPIData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/agent/')
+        axios.get('http://localhost:8081/agent/')
             .then((response) => {
                 setAPIData(response.data);
             })
@@ -20,7 +20,7 @@ export default function ReadAgents() {
     }
 
     const onDelete = (id) => {
-        axios.delete(`http://localhost:8080/agent/${id}`)
+        axios.delete(`http://localhost:8081/agent/${id}`)
         .then(() => {
             const updatedData = APIData.filter(item => item.id !== id);
             setAPIData(updatedData);

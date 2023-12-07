@@ -7,7 +7,7 @@ export default function ReadClients() {
     const [APIData, setAPIData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/client/')
+        axios.get('http://localhost:8081/client/')
             .then((response) => {
                 setAPIData(response.data);
             })
@@ -20,7 +20,7 @@ export default function ReadClients() {
     }
 
     const onDelete = (id) => {
-        axios.delete(`http://localhost:8080/client/${id}`)
+        axios.delete(`http://localhost:8081/client/${id}`)
         .then(() => {
             const updatedData = APIData.filter(item => item.id !== id);
             setAPIData(updatedData);

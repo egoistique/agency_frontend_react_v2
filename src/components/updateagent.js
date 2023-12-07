@@ -16,7 +16,7 @@ export default function UpdateAgent() {
     }, []);
 
     const updateAPIData = () => {
-        axios.put(`http://localhost:8080/agent/${id}`, {
+        axios.put(`http://localhost:8081/agent/${id}`, {
             name: name,
             contact: contact,
             

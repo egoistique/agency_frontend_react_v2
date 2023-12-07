@@ -7,7 +7,7 @@ export default function ReadTranscations() {
     const [APIData, setAPIData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/transaction/')
+        axios.get('http://localhost:8081/transaction/')
             .then((response) => {
                 setAPIData(response.data);
             })
@@ -23,7 +23,7 @@ export default function ReadTranscations() {
     }
 
     const onDelete = (id) => {
-        axios.delete(`http://localhost:8080/transaction/${id}`)
+        axios.delete(`http://localhost:8081/transaction/${id}`)
         .then(() => {
             const updatedData = APIData.filter(item => item.id !== id);
             setAPIData(updatedData);

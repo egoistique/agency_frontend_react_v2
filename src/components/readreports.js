@@ -7,7 +7,7 @@ export default function ReadReports() {
     const [APIData, setAPIData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/report/')
+        axios.get('http://localhost:8081/report/')
             .then((response) => {
                 setAPIData(response.data);
             })
@@ -15,12 +15,12 @@ export default function ReadReports() {
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
-        localStorage.setItem(' Text', data.text);
-        localStorage.setItem('Agent_id', data.agent_id);
+        localStorage.setItem('text', data.text);
+        localStorage.setItem('agent_id', data.agent_id ? data.agent_id.id : '');
     }
-
+    
     const onDelete = (id) => {
-        axios.delete(`http://localhost:8080/report/${id}`)
+        axios.delete(`http://localhost:8081/report/${id}`)
         .then(() => {
             const updatedData = APIData.filter(item => item.id !== id);
             setAPIData(updatedData);
@@ -43,7 +43,7 @@ export default function ReadReports() {
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='card-buttons'>
-                                    <Link to='/update'>
+                                    <Link to='/updatereport'>
                                         <Button onClick={() => setData(data)}>Update</Button>
                                     </Link>
                                     <Button onClick={() => onDelete(data.id)}>Delete</Button>

@@ -16,7 +16,7 @@ export default function UpdateObject() {
     }, []);
 
     const updateAPIData = () => {
-        axios.put(`http://localhost:8080/estate-object/${id}`, {
+        axios.put(`http://localhost:8081/estate-object/${id}`, {
             location: location,
             price: price,
             

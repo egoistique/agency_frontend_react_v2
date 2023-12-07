@@ -16,12 +16,12 @@ export default function UpdateClient() {
     }, []);
 
     const updateAPIData = () => {
-        axios.put(`http://localhost:8080/client/${id}`, {
+        axios.put(`http://localhost:8081/client/${id}`, {
             name: name,
             contact: contact,
             
         }).then(() => {
-            navigate('/read'); // использование navigate для перехода на другую страницу
+            navigate('/readclients'); // использование navigate для перехода на другую страницу
         }).catch(error => {
             console.error('Ошибка при обновлении данных:', error);
         });
