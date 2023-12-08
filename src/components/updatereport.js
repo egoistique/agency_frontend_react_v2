@@ -7,28 +7,44 @@ export default function UpdateReport() {
     const navigate = useNavigate();
     const [id, setID] = useState(null);
     const [text, setText] = useState('');
-    const [agent_id, setAgentId] = useState('');
+    const [agent_id, setAgent] = useState('');
     const [agents, setAgents] = useState([]);
 
     useEffect(() => {
         setID(localStorage.getItem('ID'));
         setText(localStorage.getItem('text'));
-        setAgentId(localStorage.getItem('agent_id'));
+        setAgent(localStorage.getItem('agent_id'));
 
         axios.get('http://localhost:8081/agent/')
             .then((response) => {
-                setAgents(response.data);
+                setAgents(response.data); 
             })
+            .catch((error) => {
+                console.error('Error fetching agents:', error);
+            });
     }, []);
 
     const updateAPIData = () => {
-        axios.put(`http://localhost:8081/report/${id}`, {
+        const newReport = {
             text: text,
-            agent_id: agent_id, // Передаем agent_id
-        }).then(() => {
+            agent_id: agents.find((a) => a.id === parseInt(agent_id))
+        };
+
+        axios.put(`http://localhost:8081/report/${id}`, newReport)
+        .then(() => {
+            axios.get('http://localhost:8081/agent/')
+                .then((response) => {
+                    setAgents(response.data);
+                })
+                .catch((error) => {
+                    console.error('Error fetching agents:', error);
+                });
+            setText(''); 
+            setAgent('');
             navigate('/readreports'); 
-        }).catch(error => {
-            console.error('Ошибка при обновлении данных:', error);
+        })
+        .catch((error) => {
+            console.error('Error creating report:', error);
         });
     }
     
@@ -41,11 +57,11 @@ export default function UpdateReport() {
                     <input placeholder='Text' value={text} onChange={(e) => setText(e.target.value)} />
                 </Form.Field>
                 <Form.Field>
-                    <label>Agent Id</label>
-                    <select value={agent_id} onChange={(e) => setAgentId(e.target.value)}>
+                    <label>Agent</label>
+                    <select value={agent_id} onChange={(e) => setAgent(e.target.value)}>
                         <option value="">Select an agent</option>
-                        {agents.map((agent) => (
-                            <option key={agent.id} value={agent.id}>{agent.name}</option>
+                        {agents.map((agent_id) => (
+                            <option key={agent_id.id} value={agent_id.id}>{agent_id.name}</option>
                         ))}
                     </select>
                 </Form.Field>

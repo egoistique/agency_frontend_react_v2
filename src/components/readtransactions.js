@@ -15,11 +15,11 @@ export default function ReadTranscations() {
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
-        localStorage.setItem(' type', data.type);
-        localStorage.setItem('agent_id', data.agent_id);
-        localStorage.setItem('seller_id', data.seller_id);
-        localStorage.setItem('buyer_id', data.buyer_id);
-        localStorage.setItem('estate_object_id', data.estate_object_id);
+        localStorage.setItem('type', data.type);
+        localStorage.setItem('agent_id', data.agent_id ? data.agent_id.id : '');
+        localStorage.setItem('seller_id', data.seller_id ? data.seller_id.id : '');
+        localStorage.setItem('buyer_id', data.buyer_id ? data.buyer_id.id : '');
+        localStorage.setItem('estate_object_id', data.estate_object_id ? data.estate_object_id.id : '');
     }
 
     const onDelete = (id) => {
@@ -57,7 +57,7 @@ export default function ReadTranscations() {
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='card-buttons'>
-                                    <Link to='/update'>
+                                    <Link to='/updatetransaction'>
                                         <Button onClick={() => setData(data)}>Update</Button>
                                     </Link>
                                     <Button onClick={() => onDelete(data.id)}>Delete</Button>
