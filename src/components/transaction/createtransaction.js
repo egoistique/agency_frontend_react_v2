@@ -64,6 +64,7 @@ export default function CreateTransaction() {
     }
     return (
         <div>
+            <h2 className="title">New transaction</h2>
             <Form className="create-form">
                 <Form.Field>
                     <label>Type</label>

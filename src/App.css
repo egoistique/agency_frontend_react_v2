@@ -18,69 +18,10 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #212121;
+  background-color: #383838;
   color: whitesmoke;
   flex-direction: column;
 }
-
-
-/* Стили для шапки */
-.main-header {
-  font-family: 'Montserrat', sans-serif;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 20px;
-  background-color: whitesmoke; /* Цвет фона шапки */
-}
-
-/* Стили для навигационных ссылок */
-.nav-links {
-  display: flex;
-  align-items: center;
-}
-
-.nav-items {
-  display: flex;
-  align-items: center;
-}
-
-.nav-items a {
-  margin-right: 20px;
-  margin-top: 10px;
-  text-decoration: none;
-  color: whitesmoke; /* Цвет ссылок */
-}
-
-.new-button {
-  background-color: #FF5722;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-}
-
-
-.nav-links li {
-  margin-right: 20px;
-}
-
-/* Стили для кнопки "New" */
-.new-button {
-  background-color: #FF5722;
-  color: white;
-  text-decoration: none;
-  margin-top: 20px;
-  margin-bottom: 15px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-}
-
 
 .create-form label {
   color: whitesmoke !important;
@@ -91,6 +32,7 @@
 
 /* Стили для контейнера списка карточек */
 .read-container {
+  margin-top: 20px;
   padding-top: 60px; /* Высота шапки */
   overflow-y: scroll; /* Разрешить прокрутку внутри контейнера */
 }
@@ -118,7 +60,7 @@
 /* Обновленные стили для карточек */
 .card-container .card {
   width: calc(2/3 * 100% - 20px); /* 2/3 ширины экрана с учетом промежутков между карточками */
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   background-color: #FFF; /* Цвет фона карточки */
   color: #212121; /* Цвет текста на карточке */
   display: flex;
@@ -139,7 +81,7 @@
 }
 
 .card-container .card .card-buttons button {
-  background-color: #FF5722; /* Цвет фона кнопок Update и Delete */
+  background-color: #FF8C00; /* Цвет фона кнопок Update и Delete */
   color: white;
   text-decoration: none;
   padding: 10px 15px;
@@ -151,9 +93,14 @@
   outline: none; /* Убрать выделение при фокусе */
 }
 
+.card-container .card .card-buttons button:hover {
+  background-color: #FF5722;
+}
+
 .card-container .card .card-buttons button:first-child {
   margin-right: 15px; /* Отступ между кнопками */
 }
+
 
 
 

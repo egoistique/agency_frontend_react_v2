@@ -29,6 +29,7 @@ export default function UpdateAgent() {
 
     return (
         <div>
+            <h2 className="title">Update agent</h2>
             <Form className="create-form">
                 <Form.Field>
                     <label>Name</label>

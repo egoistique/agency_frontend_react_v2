@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
+import '../../forms.css'; // Подключаем файл стилей
 
-export default function CreateAgent() {
+export default function CreateClient() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [contact, setContact] = useState('');
-    const [checkbox, setCheckbox] = useState(false);
     const postData = () => {
         axios.post('http://localhost:8081/agent/', {
             name,
@@ -17,7 +17,8 @@ export default function CreateAgent() {
         })
     }
     return (
-        <div>
+        <div className="create-container">
+            <h2 className="title">New agent</h2>
             <Form className="create-form">
                 <Form.Field>
                     <label>Name</label>

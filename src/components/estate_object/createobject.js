@@ -17,6 +17,7 @@ export default function CreateObject() {
     }
     return (
         <div>
+            <h2 className="title">New estate object</h2>
             <Form className="create-form">
                 <Form.Field>
                     <label>Location</label>

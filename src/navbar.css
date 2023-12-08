@@ -1,0 +1,48 @@
+/* Стили для шапки */
+.nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Устанавливаем z-index, чтобы панель была выше других элементов */
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #212121; /* Цвет фона шапки */
+  }
+  
+  .nav-items {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-items a {
+    margin-right: 20px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: whitesmoke; /* Цвет ссылок */
+  }
+  
+  .new-buttons-container {
+    margin-left: auto; 
+    margin-right: 20px;
+  }
+  
+  .new-button {
+    background-color: #FF8C00;
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+  }
+  .new-button:hover {
+    background-color: #FF5722;
+  }

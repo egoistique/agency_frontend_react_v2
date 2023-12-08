@@ -83,6 +83,7 @@ export default function UpdateTransaction() {
     
     return (
         <div>
+            <h2 className="title">Update transaction</h2>
             <Form className="create-form">
                 <Form.Field>
                     <label>Type</label>

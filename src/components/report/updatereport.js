@@ -51,6 +51,7 @@ export default function UpdateReport() {
     
     return (
         <div>
+            <h2 className="title">Update report</h2>
             <Form className="create-form">
                 <Form.Field>
                     <label>Text</label>

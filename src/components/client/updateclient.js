@@ -29,6 +29,7 @@ export default function UpdateClient() {
 
     return (
         <div>
+            <h2 className="title">Update client</h2>
             <Form className="create-form">
                 <Form.Field>
                     <label>Name</label>

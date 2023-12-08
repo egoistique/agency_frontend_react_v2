@@ -29,6 +29,7 @@ export default function UpdateObject() {
 
     return (
         <div>
+            <h2 className="title">Update estate object</h2>
             <Form className="create-form">
                 <Form.Field>
                     <label>Location</label>

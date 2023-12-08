@@ -45,6 +45,7 @@ export default function CreateReport() {
 
     return (
         <div>
+            <h2 className="title">New report</h2>
             <Form className="create-form">
                 <Form.Field>
                     <label>Text</label>

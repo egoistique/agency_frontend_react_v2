@@ -1,0 +1,57 @@
+/* Стили для формы */
+.create-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #383838;
+  }
+  
+  /* Стили для полей ввода */
+  .create-form input {
+    width: calc(100% - 20px); /* Ширина поля с учетом внутреннего отступа 20px */
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+/* Стили для кнопки */
+.create-form button {
+    width: calc(100% - 20px); 
+    margin: 0 auto; 
+    display: block; 
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FF8C00;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .create-form button:hover {
+    background-color: #FF5722;
+  }
+
+.create-form select {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff; /* Фон списка */
+  }
+  
+  /* Стили для опций выпадающего списка */
+  .create-form select option {
+    padding: 5px;
+  }
+  
+.title {
+  text-align: center; /* Центрирование текста */
+  font-family: 'Montserrat', sans-serif; /* Используемый шрифт */
+  color: whitesmoke; /* Цвет текста */
+}
+
+  
