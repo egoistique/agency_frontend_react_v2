@@ -1,21 +1,21 @@
 import './App.css';
-import CreateClient from './components/createclient';
-import CreateAgent from './components/createagent';
-import CreateReport from './components/createreport';
-import CreateObject from './components/createobject';
-import CreateTransaction from './components/createtransaction';
+import CreateClient from './components/client/createclient';
+import CreateAgent from './components/agent/createagent';
+import CreateReport from './components/report/createreport';
+import CreateObject from './components/estate_object/createobject';
+import CreateTransaction from './components/transaction/createtransaction';
 
-import ReadClients from './components/readclients';
-import ReadAgents from './components/readagents';
-import ReadReports from './components/readreports';
-import ReadObjects from './components/readobjects';
-import ReadTranscations from './components/readtransactions';
+import ReadClients from './components/client/readclients';
+import ReadAgents from './components/agent/readagents';
+import ReadReports from './components/report/readreports';
+import ReadObjects from './components/estate_object/readobjects';
+import ReadTranscations from './components/transaction/readtransactions';
 
-import UpdateClient from './components/updateclient';
-import UpdateAgent from './components/updateagent';
-import UpdateObject from './components/updateobject';
-import UpdateReport from './components/updatereport';
-import UpdateTransaction from './components/updatetransaction';
+import UpdateClient from './components/client/updateclient';
+import UpdateAgent from './components/agent/updateagent';
+import UpdateObject from './components/estate_object/updateobject';
+import UpdateReport from './components/report/updatereport';
+import UpdateTransaction from './components/transaction/updatetransaction';
 import Nav from './components/Nav'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
