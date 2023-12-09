@@ -53,5 +53,11 @@
   font-family: 'Montserrat', sans-serif; /* Используемый шрифт */
   color: whitesmoke; /* Цвет текста */
 }
+.error-message {
+  color: #EE82EE;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 
   

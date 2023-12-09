@@ -46,3 +46,9 @@
   .new-button:hover {
     background-color: #FF5722;
   }
+
+  .active-link {
+    color: red; /* Цвет активной ссылки */
+    font-weight: bold; /* Жирный шрифт для активной ссылки */
+  }
+  
