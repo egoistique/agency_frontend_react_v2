@@ -11,8 +11,8 @@ export default function UpdateClient() {
 
     useEffect(() => {
         setID(localStorage.getItem('ID'));
-        setName(localStorage.getItem(' Name'));
-        setContact(localStorage.getItem('Contact'));
+        setName(localStorage.getItem('name'));
+        setContact(localStorage.getItem('contact'));
     }, []);
 
     const updateAPIData = () => {

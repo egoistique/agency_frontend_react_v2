@@ -12,7 +12,6 @@
   margin-bottom: 20px;
 }
 
-/* Ваши существующие стили */
 .main {
   display: flex;
   justify-content: center;
@@ -29,11 +28,10 @@
   font-size: 12px !important;
 }
 
-
 /* Стили для контейнера списка карточек */
 .read-container {
   margin-top: 20px;
-  padding-top: 60px; /* Высота шапки */
+  padding-top: 115px; /* Высота шапки */
   overflow-y: scroll; /* Разрешить прокрутку внутри контейнера */
 }
 
@@ -51,6 +49,7 @@
 /* Стили для контейнера списка карточек */
 .card-container {
   display: flex;
+  min-width: 600px;
   flex-wrap: wrap;
   gap: 10px;
   padding-top: 5px; /* Учесть высоту шапки */
@@ -69,7 +68,6 @@
   padding: 10px;
   text-align: center; /* Выравнивание текста по центру */
   border-radius: 15px; /* Скругление углов */
-   /* Фиксированная высота */
   overflow: hidden; /* Скрыть возможный избыток содержимого */
 }
 
@@ -101,6 +99,68 @@
   margin-right: 15px; /* Отступ между кнопками */
 }
 
+.search-bar {
+  width: 80%; /* Занимает 80% ширины экрана */
+  margin: 60px auto; /* Центрирует по горизонтали и добавляет отступ сверху */
+  border-radius: 20px; /* Скругленные углы */
+  position: fixed; /* Фиксированное положение */
+  top: 20px; /* Фиксированный отступ сверху */
+  left: 50%; /* Центрирует относительно родительского элемента */
+  transform: translateX(-50%); /* Центрирует по горизонтали */
+  padding: 10px; /* Добавляет отступы внутри строки поиска */
+  background-color: whitesmoke; /* Цвет фона */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px; /* Размер текста */
+  border: none;
+}
+
+.search-bar input {
+  font-family: 'Montserrat', sans-serif;
+  width: 90%;
+  margin-left: 20px;
+  background-color: whitesmoke;
+  font-size: 16px;
+  color: #212121;
+  border: none; 
+  outline: none; 
+}
+
+.pagination-info {
+  position: fixed;
+  font-family: 'Montserrat', sans-serif;
+  bottom: 10px; 
+  left: 20px; 
+  background-color: 383838;
+  padding: 10px;
+  font-size: 13px;
+  color: whitesmoke;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.switcher-pages {
+  position: fixed;
+  font-family: 'Montserrat', sans-serif;
+  bottom: 10px; 
+  right: 20px; 
+  background-color: #383838;
+  font-size: 13px;
+  color: #212121;
+  border-radius: 5px;
+}
+
+.switcher-button {
+  background-color: #383838; 
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  border: none; 
+  outline: none; 
+}
 
 
 
