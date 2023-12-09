@@ -5,9 +5,9 @@ In the project directory, you can run:
 Frontend for the project Real Estate Agency
 
   Stack:
-Frontend: React
-Backend: Java, Spring
-database: PostgreSQL
+  Frontend: React
+  Backend: Java, Spring
+  database: PostgreSQL
 
   Task:
 A completed application according to the task text:
