@@ -17,16 +17,18 @@ A completed application according to the task text:
 4. able to display some statistical information (total number of records, most popular ones, etc.);
 5. having protection against incorrect user actions (for most cases).
 
-Main Page:
-![Alt text](image.png)
+Main Page (clients list):
+![Alt text](image-1.png)
 
 Transactions page:
+![Alt text](image-2.png)
 
 Transaction creation page:
-
+![Alt text](image-3.png)
 Protection against empty fields:
-
+![Alt text](image-4.png)
 Drop-down list:
+![Alt text](image-5.png)
 
 
 
