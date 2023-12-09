@@ -18,7 +18,7 @@ A completed application according to the task text:
 5. having protection against incorrect user actions (for most cases).
 
 Main Page:
-
+![Alt text](image.png)
 
 Transactions page:
 
