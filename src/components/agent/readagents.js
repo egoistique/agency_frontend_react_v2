@@ -1,36 +1,25 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Input } from 'semantic-ui-react';  
+import { Button, Card, Input } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 export default function ReadAgents() {
     const [APIData, setAPIData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState(''); 
-    const [currentPageData, setCurrentPageData] = useState([]);
-    const itemsPerPage = 20; 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [currentPageItemCount, setCurrentPageItemCount] = useState(itemsPerPage);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(0); // Начинаем с 0, т.к. в Pageable начальная страница тоже считается с 0
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
-        axios.get('http://localhost:8081/agent/')
+        fetchData();
+    }, [currentPage]);
+
+    const fetchData = () => {
+        axios.get(`http://localhost:8081/agent/agents?page=${currentPage}&size=20`)
             .then((response) => {
-                setAPIData(response.data);
+                setAPIData(response.data.content); // content содержит массив данных на текущей странице
+                setTotalPages(response.data.totalPages); // totalPages содержит общее количество страниц
             })
-    }, []);
-
-    useEffect(() => {
-        const filteredData = filterAgents();
-        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-
-        setCurrentPageItemCount(
-            currentPage === totalPages ? filteredData.length - startIndex : itemsPerPage
-        );
-
-        setCurrentPageData(filteredData.slice(startIndex, endIndex));
-    }, [searchTerm, APIData, currentPage, itemsPerPage]);
-
+    };
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
@@ -40,10 +29,9 @@ export default function ReadAgents() {
 
     const onDelete = (id) => {
         axios.delete(`http://localhost:8081/agent/${id}`)
-        .then(() => {
-            const updatedData = APIData.filter(item => item.id !== id);
-            setAPIData(updatedData);
-        })
+            .then(() => {
+                fetchData(); // После удаления данных, перезапрашиваем текущую страницу
+            })
     }
 
     const filterAgents = () => {
@@ -53,8 +41,8 @@ export default function ReadAgents() {
         );
     }
 
-    const renderPageData = () => {
-        return currentPageData.map((data) => (
+    const renderAgents = () => {
+        return filterAgents().map((data) => (
             <div key={data.id} className="card">
                 <Card>
                     <Card.Content>
@@ -74,16 +62,14 @@ export default function ReadAgents() {
         ));
     };
 
-
     const nextPage = () => {
-        const totalPages = Math.ceil(filterAgents().length / itemsPerPage);
-        if (currentPage < totalPages) {
+        if (currentPage < totalPages - 1) {
             setCurrentPage(currentPage + 1);
         }
     };
 
     const prevPage = () => {
-        if (currentPage > 1) {
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
         }
     };
@@ -99,16 +85,17 @@ export default function ReadAgents() {
             />
 
             <div className="card-container">
-                {renderPageData()}
+                {renderAgents()}
             </div>
             <div className="pagination-info">
-                Found: {filterAgents().length}
+                Page: {currentPage + 1} / {totalPages} {/* Текущая страница и общее количество страниц */}
                 <br />
-                On page: {currentPageItemCount}
+                On page: {filterAgents().length}  {/* Количество агентов на текущей странице */}
             </div>
+
             <div className="switcher-pages">
-                <Button className="switcher-button" onClick={prevPage}>Back</Button>
-                <Button className="switcher-button" onClick={nextPage}>Next</Button>
+                <Button className="switcher-button" onClick={prevPage} disabled={currentPage === 0}>Back</Button>
+                <Button className="switcher-button" onClick={nextPage} disabled={currentPage === totalPages - 1}>Next</Button>
             </div>
         </div>
     );

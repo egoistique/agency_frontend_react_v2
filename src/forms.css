@@ -10,7 +10,7 @@
   
   /* Стили для полей ввода */
   .create-form input {
-    width: calc(100% - 20px); /* Ширина поля с учетом внутреннего отступа 20px */
+    width: calc(100% - 20px); 
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -40,7 +40,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #fff; /* Фон списка */
+    background-color: #fff; 
   }
   
   /* Стили для опций выпадающего списка */
@@ -49,9 +49,9 @@
   }
   
 .title {
-  text-align: center; /* Центрирование текста */
-  font-family: 'Montserrat', sans-serif; /* Используемый шрифт */
-  color: whitesmoke; /* Цвет текста */
+  text-align: center; 
+  font-family: 'Montserrat', sans-serif; 
+  color: whitesmoke; 
 }
 .error-message {
   color: #EE82EE;

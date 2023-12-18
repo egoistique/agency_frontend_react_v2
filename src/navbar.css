@@ -1,17 +1,16 @@
-/* Стили для шапки */
 .nav-links {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Устанавливаем z-index, чтобы панель была выше других элементов */
+    z-index: 1000; /*  z-index чтобы панель была выше других элементов */
     font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 20px;
-    background-color: #212121; /* Цвет фона шапки */
+    background-color: #212121;
   }
   
   .nav-items {
@@ -23,7 +22,7 @@
     margin-right: 20px;
     margin-top: 10px;
     text-decoration: none;
-    color: whitesmoke; /* Цвет ссылок */
+    color: whitesmoke; 
   }
   
   .new-buttons-container {
@@ -48,7 +47,7 @@
   }
 
   .active-link {
-    color: red; /* Цвет активной ссылки */
-    font-weight: bold; /* Жирный шрифт для активной ссылки */
+    color: red; 
+    font-weight: bold; 
   }
   

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-/* Добавленный стиль для кнопки */
 .button-style {
   background-color: #FF5722;
   color: white;
@@ -31,19 +30,19 @@
 /* Стили для контейнера списка карточек */
 .read-container {
   margin-top: 20px;
-  padding-top: 115px; /* Высота шапки */
-  overflow-y: scroll; /* Разрешить прокрутку внутри контейнера */
+  padding-top: 115px; 
+  overflow-y: scroll;
 }
 
 /* Стили для шапки */
 .read-container h2 {
-  position: fixed; /* Зафиксировать шапку */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #FFF; /* Цвет фона шапки */
+  background-color: #FFF; 
   padding: 20px;
-  z-index: 1; /* Чтобы шапка была над остальными элементами */
+  z-index: 1;
 }
 
 /* Стили для контейнера списка карточек */
@@ -52,23 +51,23 @@
   min-width: 600px;
   flex-wrap: wrap;
   gap: 10px;
-  padding-top: 5px; /* Учесть высоту шапки */
-  justify-content: center; /* Центрирование карточек по горизонтали */
+  padding-top: 5px; 
+  justify-content: center;
 }
 
-/* Обновленные стили для карточек */
+/* стили для карточек */
 .card-container .card {
   width: calc(2/3 * 100% - 20px); /* 2/3 ширины экрана с учетом промежутков между карточками */
   margin-bottom: 15px;
-  background-color: #FFF; /* Цвет фона карточки */
-  color: #212121; /* Цвет текста на карточке */
+  background-color: #FFF; /* Цвет фона  */
+  color: #212121; 
   display: flex;
   flex-direction: column;
-  align-items: center; /* Центрирование текста */
+  align-items: center; 
   padding: 10px;
-  text-align: center; /* Выравнивание текста по центру */
-  border-radius: 15px; /* Скругление углов */
-  overflow: hidden; /* Скрыть возможный избыток содержимого */
+  text-align: center; 
+  border-radius: 15px; 
+  overflow: hidden; 
 }
 
 
@@ -79,7 +78,7 @@
 }
 
 .card-container .card .card-buttons button {
-  background-color: #FF8C00; /* Цвет фона кнопок Update и Delete */
+  background-color: #FF8C00; /* Цвет фона кнопок*/
   color: white;
   text-decoration: none;
   padding: 10px 15px;
@@ -87,8 +86,8 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   cursor: pointer;
-  border: none; /* Убрать обводку */
-  outline: none; /* Убрать выделение при фокусе */
+  border: none; 
+  outline: none; 
 }
 
 .card-container .card .card-buttons button:hover {
@@ -96,13 +95,13 @@
 }
 
 .card-container .card .card-buttons button:first-child {
-  margin-right: 15px; /* Отступ между кнопками */
+  margin-right: 15px; 
 }
 
 .search-bar {
-  width: 80%; /* Занимает 80% ширины экрана */
+  width: 80%; 
   margin: 60px auto; /* Центрирует по горизонтали и добавляет отступ сверху */
-  border-radius: 20px; /* Скругленные углы */
+  border-radius: 20px; 
   position: fixed; /* Фиксированное положение */
   top: 20px; /* Фиксированный отступ сверху */
   left: 50%; /* Центрирует относительно родительского элемента */
