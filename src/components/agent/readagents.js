@@ -6,43 +6,36 @@ import { Link } from 'react-router-dom';
 export default function ReadAgents() {
     const [APIData, setAPIData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [currentPage, setCurrentPage] = useState(0); // Начинаем с 0, т.к. в Pageable начальная страница тоже считается с 0
+    const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
         fetchData();
-    }, [currentPage]);
+    }, [currentPage, searchTerm]); 
 
     const fetchData = () => {
-        axios.get(`http://localhost:8081/agent/agents?page=${currentPage}&size=20`)
+        axios.get(`http://localhost:8081/agent/agents/search?searchTerm=${searchTerm}&page=${currentPage}&size=20`)
             .then((response) => {
-                setAPIData(response.data.content); // content содержит массив данных на текущей странице
-                setTotalPages(response.data.totalPages); // totalPages содержит общее количество страниц
+                setAPIData(response.data.content);
+                setTotalPages(response.data.totalPages);
             })
     };
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
-        localStorage.setItem(' Name', data.name);
+        localStorage.setItem('Name', data.name); 
         localStorage.setItem('Contact', data.contact);
     }
 
     const onDelete = (id) => {
         axios.delete(`http://localhost:8081/agent/${id}`)
             .then(() => {
-                fetchData(); // После удаления данных, перезапрашиваем текущую страницу
+                fetchData();
             })
     }
 
-    const filterAgents = () => {
-        return APIData.filter(data =>
-            data.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.contact.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-    }
-
     const renderAgents = () => {
-        return filterAgents().map((data) => (
+        return APIData.map((data) => (
             <div key={data.id} className="card">
                 <Card>
                     <Card.Content>
@@ -83,14 +76,13 @@ export default function ReadAgents() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-
             <div className="card-container">
                 {renderAgents()}
             </div>
             <div className="pagination-info">
-                Page: {currentPage + 1} / {totalPages} {/* Текущая страница и общее количество страниц */}
+                Page: {currentPage + 1} / {totalPages}
                 <br />
-                On page: {filterAgents().length}  {/* Количество агентов на текущей странице */}
+                On page: {APIData.length}
             </div>
 
             <div className="switcher-pages">
