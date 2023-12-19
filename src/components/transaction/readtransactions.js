@@ -7,30 +7,21 @@ export default function ReadTranscations() {
     const [APIData, setAPIData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPageData, setCurrentPageData] = useState([]);
-    const itemsPerPage = 20; 
+    const itemsPerPage = 20;
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentPageItemCount, setCurrentPageItemCount] = useState(itemsPerPage);
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
-        axios.get('http://localhost:8081/transaction/')
+        fetchData();
+    }, [currentPage, searchTerm]);
+
+    const fetchData = () => {
+        axios.get(`http://localhost:8081/transaction/transactions/search?searchTerm=${searchTerm}&page=${currentPage - 1}&size=${itemsPerPage}`)
             .then((response) => {
-                setAPIData(response.data);
+                setAPIData(response.data.content);
+                setTotalPages(response.data.totalPages);
             })
-    }, []);
-
-    useEffect(() => {
-        const filteredData = filterTransactions();
-        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-
-        setCurrentPageItemCount(
-            currentPage === totalPages ? filteredData.length - startIndex : itemsPerPage
-        );
-
-        setCurrentPageData(filteredData.slice(startIndex, endIndex));
-    }, [searchTerm, APIData, currentPage, itemsPerPage]);
-
+    };
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
@@ -44,27 +35,12 @@ export default function ReadTranscations() {
     const onDelete = (id) => {
         axios.delete(`http://localhost:8081/transaction/${id}`)
         .then(() => {
-            const updatedData = APIData.filter(item => item.id !== id);
-            setAPIData(updatedData);
+            fetchData();
         })
     }
 
-    const filterTransactions = () => {
-        return APIData.filter(data =>
-            data.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.agent_id.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.agent_id.contact.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.seller_id.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.seller_id.contact.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.buyer_id.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.buyer_id.contact.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.estate_object_id.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.estate_object_id.price.toString().toLowerCase().includes(searchTerm.toLowerCase())
-        );
-    }
-
     const renderPageData = () => {
-        return currentPageData.map((data) => (
+        return APIData.map((data) =>(
             <div key={data.id} className="card">
                 <Card>
                     <Card.Content>
@@ -100,7 +76,6 @@ export default function ReadTranscations() {
     };
 
     const nextPage = () => {
-        const totalPages = Math.ceil(filterTransactions().length / itemsPerPage);
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
         }
@@ -126,9 +101,9 @@ export default function ReadTranscations() {
                 {renderPageData()}
             </div>
             <div className="pagination-info">
-                Found: {filterTransactions().length}
+                Page: {currentPage} / {totalPages}
                 <br />
-                On page: {currentPageItemCount}
+                On page: {APIData.length}
             </div>
             <div className="switcher-pages">
                 <Button className="switcher-button" onClick={prevPage}>Back</Button>
@@ -136,6 +111,5 @@ export default function ReadTranscations() {
             </div>
         </div>
     );
-    
     
 }

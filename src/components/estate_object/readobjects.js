@@ -6,30 +6,22 @@ import { Link } from 'react-router-dom';
 export default function ReadObjects() {
     const [APIData, setAPIData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [currentPageData, setCurrentPageData] = useState([]);
-    const itemsPerPage = 20; 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [currentPageItemCount, setCurrentPageItemCount] = useState(itemsPerPage);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+
+    const itemsPerPage = 20;
 
     useEffect(() => {
-        axios.get('http://localhost:8081/estate-object/')
+        fetchData();
+    }, [currentPage, searchTerm]);
+
+    const fetchData = () => {
+        axios.get(`http://localhost:8081/estate-object/estate-objects/search?searchTerm=${searchTerm}&page=${currentPage}&size=${itemsPerPage}`)
             .then((response) => {
-                setAPIData(response.data);
+                setAPIData(response.data.content);
+                setTotalPages(response.data.totalPages);
             })
-    }, []);
-
-    useEffect(() => {
-        const filteredData = filterObjects();
-        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-
-        setCurrentPageItemCount(
-            currentPage === totalPages ? filteredData.length - startIndex : itemsPerPage
-        );
-
-        setCurrentPageData(filteredData.slice(startIndex, endIndex));
-    }, [searchTerm, APIData, currentPage, itemsPerPage]);
+    };
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
@@ -40,19 +32,12 @@ export default function ReadObjects() {
     const onDelete = (id) => {
         axios.delete(`http://localhost:8081/estate-object/${id}`)
         .then(() => {
-            const updatedData = APIData.filter(item => item.id !== id);
-            setAPIData(updatedData);
+            fetchData();
         })
     }
 
-    const filterObjects = () => {
-        return APIData.filter(data =>
-            data.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.price.toString().toLowerCase().includes(searchTerm.toLowerCase())
-        );
-    }
-    const renderPageData = () => {
-        return currentPageData.map((data) => (
+    const renderObjects = () => {
+        return APIData.map((data) => (
             <div key={data.id} className="card">
                 <Card>
                     <Card.Content>
@@ -73,14 +58,13 @@ export default function ReadObjects() {
     };
 
     const nextPage = () => {
-        const totalPages = Math.ceil(filterObjects().length / itemsPerPage);
-        if (currentPage < totalPages) {
+        if (currentPage < totalPages - 1) {
             setCurrentPage(currentPage + 1);
         }
     };
 
     const prevPage = () => {
-        if (currentPage > 1) {
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
         }
     };
@@ -96,16 +80,16 @@ export default function ReadObjects() {
             />
 
             <div className="card-container">
-                {renderPageData()}
+                {renderObjects()}
             </div>
             <div className="pagination-info">
-                Found: {filterObjects().length}
+                Page: {currentPage + 1} / {totalPages}
                 <br />
-                On page: {currentPageItemCount}
+                On page: {APIData.length}
             </div>
             <div className="switcher-pages">
-                <Button className="switcher-button" onClick={prevPage}>Back</Button>
-                <Button className="switcher-button" onClick={nextPage}>Next</Button>
+                <Button className="switcher-button" onClick={prevPage} disabled={currentPage === 0}>Back</Button>
+                <Button className="switcher-button" onClick={nextPage} disabled={currentPage === totalPages - 1}>Next</Button>
             </div>
         </div>
     );

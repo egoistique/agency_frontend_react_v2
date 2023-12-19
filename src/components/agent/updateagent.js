@@ -17,7 +17,7 @@ export default function UpdateAgent() {
 
     useEffect(() => {
         setID(localStorage.getItem('ID'));
-        setName(localStorage.getItem(' Name'));
+        setName(localStorage.getItem('Name'));
         setContact(localStorage.getItem('Contact'));
     }, []);
 

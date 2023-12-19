@@ -17,11 +17,13 @@ A completed application according to the task text:
 4. able to display some statistical information (total number of records, most popular ones, etc.);
 5. having protection against incorrect user actions (for most cases).
 
-Main Page (clients list):
-![Alt text](image-1.png)
+The data was generated using the Faker library
+
+Main Page (agents list):
+![Alt text](image-6.png)
 
 Transactions page:
-![Alt text](image-2.png)
+![Alt text](image-7.png)
 
 Transaction creation page:
 ![Alt text](image-3.png)

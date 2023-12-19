@@ -1,61 +1,42 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Input } from 'semantic-ui-react';  
+import { Button, Card, Input } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 export default function ReadReports() {
     const [APIData, setAPIData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState(''); 
-    const [currentPageData, setCurrentPageData] = useState([]);
-    const itemsPerPage = 20; 
+    const [searchTerm, setSearchTerm] = useState('');
+    const itemsPerPage = 20;
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentPageItemCount, setCurrentPageItemCount] = useState(itemsPerPage);
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
-        axios.get('http://localhost:8081/report/')
+        fetchData();
+    }, [currentPage, searchTerm]);
+
+    const fetchData = () => {
+        axios.get(`http://localhost:8081/report/reports/search?searchTerm=${searchTerm}&page=${currentPage - 1}&size=${itemsPerPage}`)
             .then((response) => {
-                setAPIData(response.data);
+                setAPIData(response.data.content);
+                setTotalPages(response.data.totalPages);
             })
-    }, []);
-
-    useEffect(() => {
-        const filteredData = filterReports();
-        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-
-        setCurrentPageItemCount(
-            currentPage === totalPages ? filteredData.length - startIndex : itemsPerPage
-        );
-
-        setCurrentPageData(filteredData.slice(startIndex, endIndex));
-    }, [searchTerm, APIData, currentPage, itemsPerPage]);
-
+    };
 
     const setData = (data) => {
         localStorage.setItem('ID', data.id);
         localStorage.setItem('text', data.text);
         localStorage.setItem('agent_id', data.agent_id ? data.agent_id.id : '');
     }
-    
+
     const onDelete = (id) => {
         axios.delete(`http://localhost:8081/report/${id}`)
-        .then(() => {
-            const updatedData = APIData.filter(item => item.id !== id);
-            setAPIData(updatedData);
-        })
-    }
-
-    const filterReports = () => {
-        return APIData.filter(data =>
-            data.text.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.agent_id.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            data.agent_id.contact.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+            .then(() => {
+                fetchData();
+            })
     }
 
     const renderPageData = () => {
-        return currentPageData.map((data) => (
+        return APIData.map((data) => (
             <div key={data.id} className="card">
                 <Card>
                     <Card.Content>
@@ -79,7 +60,6 @@ export default function ReadReports() {
     };
 
     const nextPage = () => {
-        const totalPages = Math.ceil(filterReports().length / itemsPerPage);
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
         }
@@ -100,18 +80,18 @@ export default function ReadReports() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-
             <div className="card-container">
                 {renderPageData()}
             </div>
             <div className="pagination-info">
-                Found: {filterReports().length}
+                Page: {currentPage} / {totalPages}
                 <br />
-                On page: {currentPageItemCount}
+                On page: {APIData.length}
             </div>
+
             <div className="switcher-pages">
-                <Button className="switcher-button" onClick={prevPage}>Back</Button>
-                <Button className="switcher-button" onClick={nextPage}>Next</Button>
+                <Button className="switcher-button" onClick={prevPage} disabled={currentPage === 1}>Back</Button>
+                <Button className="switcher-button" onClick={nextPage} disabled={currentPage === totalPages}>Next</Button>
             </div>
         </div>
     );
